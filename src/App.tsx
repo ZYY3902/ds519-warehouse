@@ -26,7 +26,9 @@ function App() {
       <Grid container style={{ padding: "2rem" }}>
         <Grid>
           <Typography variant="h4" gutterBottom>
-            Report
+            Report 
+            {API_URL}{API_KEY}
+            {"       ?? ?? "}
           </Typography>
         </Grid>
         <Grid>
