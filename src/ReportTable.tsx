@@ -25,7 +25,7 @@ export const ReportTable = ({shipments =[]} : {shipments:ShipmentInfo[]}) => {
         rows={shipments}
         columns={columns}
         getRowId={(row) => row.ShipmentID}
-        pageSize={100}
+        pageSize={10}
         rowsPerPageOptions={[10]}
       />
     </Box>

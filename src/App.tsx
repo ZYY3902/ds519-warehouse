@@ -23,13 +23,13 @@ function App() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Grid container spacing={2} style={{ padding: "2rem" }}>
-        <Grid xs={12} container alignItems="center" justifyContent="center">
+      <Grid container style={{ padding: "2rem" }}>
+        <Grid>
           <Typography variant="h4" gutterBottom>
             Report
           </Typography>
         </Grid>
-        <Grid xs={8} md={9}>
+        <Grid>
           <Typography variant="h5" gutterBottom>
             Shipper ID:
           </Typography>
@@ -40,7 +40,7 @@ function App() {
           />
           <Button onClick={() => fetchDataByID(inputValue)}>SUBMIT</Button>
         </Grid>
-        <Grid xs={8} md={8}>
+        <Grid>
           <Typography variant="h5" gutterBottom>
             Shipping Boxes Received Items:
           </Typography>
