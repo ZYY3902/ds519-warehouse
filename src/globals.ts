@@ -5,5 +5,6 @@ export const GET_DEFAULT_HEADERS = () => {
   // You will need to add another header here
   // If you do not, the API will reject your request (:
   headers.append('Content-Type', 'application/json');
+  headers.append('x-functions-key', String(process.env.REACT_APP_API_KEY));
   return headers;
 };
