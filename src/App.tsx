@@ -26,8 +26,6 @@ function App() {
         <Grid>
           <Typography variant="h4" gutterBottom>
             Report 
-            {API_URL}{API_KEY}
-            {"       ?? ?? "}
           </Typography>
         </Grid>
         <Grid>
