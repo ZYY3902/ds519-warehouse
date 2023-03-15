@@ -15,19 +15,18 @@ function App() {
   const getapiKey = async () => {
     const response = await fetch('/api/getKey');
     const body = await response.json();
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
+    // if (response.status !== 200) {
+    //   throw Error(body.message) 
+    // }
     setapiKey(body);
   };
-  console.log(apiKey)
 
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
-        'x-functions-key': String(getapiKey)
+        'x-functions-key': apiKey
       })
     });
     const json = await res.json() as ShipmentInfo[];
