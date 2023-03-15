@@ -14,11 +14,8 @@ function App() {
 
   const getapiKey = async () => {
     const response = await fetch('/api/getKey');
-    const body = await response.json();
-    // if (response.status !== 200) {
-    //   throw Error(body.message) 
-    // }
-    return body;
+    const data = await response.json();
+    return JSON.stringify(data);
   };
 
   const fetchDataByID = async (shipperId:string) => {
@@ -26,7 +23,7 @@ function App() {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
-        'x-functions-key': String(getapiKey)
+        'x-functions-key': ""+getapiKey
       })
     });
     const json = await res.json() as ShipmentInfo[];
