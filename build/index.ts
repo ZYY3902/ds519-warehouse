@@ -8,7 +8,7 @@ app.get('/api/getKey', (req:Request, res:Response) => {
         method:'GET',
         url:'https://warehouse-apps.azurewebsites.net/api/GetShipmentData',
         header:{
-            'x-functions-key': String(process.env.REACT_APP_API_KEY)
+            'x-functions-key': ""+process.env.REACT_APP_API_KEY
         }
     };
 });

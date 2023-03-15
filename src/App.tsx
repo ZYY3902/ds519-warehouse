@@ -8,7 +8,7 @@ import { ShipmentInfo } from "./api_types";
  
 
 function App() {
-  // const [apiKey, setapiKey] = useState<string>("");
+  const [apiKey, setapiKey] = useState<string>("");
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -18,8 +18,9 @@ function App() {
     if (response.status !== 200) {
       throw Error(body.message) 
     }
-    return body;
+    setapiKey(body);
   };
+  console.log(apiKey)
 
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
