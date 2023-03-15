@@ -8,25 +8,25 @@ import { ShipmentInfo } from "./api_types";
  
 
 function App() {
-  const [apiKey, setapiKey] = useState<string>("");
+  // const [apiKey, setapiKey] = useState<string>("");
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
-  const callBackendAPI = async () => {
+  const getapiKey = async () => {
     const response = await fetch('/api/getKey');
     const body = await response.json();
     if (response.status !== 200) {
       throw Error(body.message) 
     }
-    setapiKey(body)
+    return body;
   };
-  
+
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
-        'x-functions-key': apiKey
+        'x-functions-key': String(getapiKey)
       })
     });
     const json = await res.json() as ShipmentInfo[];
