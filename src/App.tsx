@@ -1,29 +1,31 @@
 import React from 'react';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { API_URL } from "./globals";
+import { API_URL, getApiKey } from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
 
 function App() {
-  //const [apiKey, setapiKey] = useState<string>("");
+  const [apiKey, setapiKey] = useState<string>("");
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
-  const getapiKey = async () => {
-    const response = await fetch('/api/getKey');
-    const data = await response.json();
-    return JSON.stringify(data);
-  };
-
+  useEffect(() => {
+    const fetchKey = async() => {
+      const response = await getApiKey();
+      setapiKey(response);
+    }
+    fetchKey();
+  },[])
+  
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
-        'x-functions-key': ""+getapiKey
+        'x-functions-key': apiKey
       })
     });
     const json = await res.json() as ShipmentInfo[];
