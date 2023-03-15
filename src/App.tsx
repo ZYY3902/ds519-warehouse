@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     const fetchKey = async() => {
-      const response = await fetch("/api/getKey",{
+      const response = await fetch("https://warehousenode.azurewebsites.net/api/getKey?",{
         method: "GET"
       });
       const data  = await response.json();
