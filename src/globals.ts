@@ -9,9 +9,3 @@ export const API_URL = "https://warehouse-apps.azurewebsites.net/api/GetShipment
 //   headers.append('x-functions-key', apiKey);
 //   return headers;
 // };
-
-export const getApiKey = async() => {
-  const response = await fetch('/api/getKey');
-  return await response.json();
-
-}

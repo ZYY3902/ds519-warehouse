@@ -14,11 +14,14 @@ function App() {
 
   useEffect(() => {
     const fetchKey = async() => {
-      const response = await getApiKey();
-      setapiKey(response);
+      const response = await fetch("/api/getKey",{
+        method: "GET"
+      });
+      const data  = await response.json();
+      setapiKey(data);
     }
     fetchKey();
-  },[])
+  }, [])
   
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
