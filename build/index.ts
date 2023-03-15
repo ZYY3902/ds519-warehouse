@@ -11,8 +11,6 @@ app.get('/api/getKey', (req: Request, res: Response) => {
       'x-functions-key': String(process.env.REACT_APP_RAPID_API_KEY)
     }
   };
-
-
 });
 
 app.listen(port, () => {
