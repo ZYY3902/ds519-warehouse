@@ -2,19 +2,32 @@ import React from 'react';
 import { useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { GET_DEFAULT_HEADERS, API_URL } from "./globals";
+import { API_URL } from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
 
 function App() {
+  const [apiKey, setapiKey] = useState<string>("");
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
+  const callBackendAPI = async () => {
+    const response = await fetch('/api/getKey');
+    const body = await response.json();
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    setapiKey(body)
+  };
+  
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
-      headers: GET_DEFAULT_HEADERS()
+      headers: ({
+        'Content-Type': 'application/json',
+        'x-functions-key': apiKey
+      })
     });
     const json = await res.json() as ShipmentInfo[];
     setShipment(json);
