@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { API_URL, getApiKey } from "./globals";
+import { API_URL } from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
@@ -22,7 +22,7 @@ function App() {
     }
     fetchKey();
   }, [])
-  
+
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
