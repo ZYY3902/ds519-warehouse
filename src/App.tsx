@@ -1,14 +1,14 @@
 import React from 'react';
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { API_URL, KEY_URL} from "./globals";
+import { API_URL } from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
 
 function App() {
-  const [apiKey, setapiKey] = useState<string>("");
+  // const [apiKey, setapiKey] = useState<string>("");
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
