@@ -1,4 +1,5 @@
 export const API_URL = "https://warehouse-apps.azurewebsites.net/api/GetShipmentData?code=";
+export const KEY_URL = "https://warehousenode.azurewebsites.net/api/getKey"
 // This is a helper function to generate the headers with the x-functions-key attached
 
 // export const GET_DEFAULT_HEADERS = () => {

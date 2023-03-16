@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { API_URL } from "./globals";
+import { API_URL, KEY_URL} from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
@@ -12,23 +12,27 @@ function App() {
   const [shipment, setShipment] = useState<ShipmentInfo[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
 
-  useEffect(() => {
-    const fetchKey = async() => {
-      const response = await fetch("https://warehousenode.azurewebsites.net/api/getKey?",{
-        method: "GET"
-      });
-      const data  = await response.json();
-      setapiKey(data);
-    }
-    fetchKey();
-  }, [])
+  // useEffect(() => {
+  //   const fetchKey = async() => {
+  //     const response = await fetch(KEY_URL,{
+  //       method: "GET",
+  //       headers: ({
+  //         'Content-Type': 'application/json',
+  //       })
+  //     });
+  //     console.log(response.json())
+  //     const data  = await response.json();
+  //     setapiKey(data);
+  //   }
+  //   fetchKey();
+  // }, [])
 
   const fetchDataByID = async (shipperId:string) => {
     const res = await fetch(API_URL + "&id=" + shipperId, {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
-        'x-functions-key': apiKey
+        'x-functions-key': String(process.env.REACT_APP_API_KEY)
       })
     });
     const json = await res.json() as ShipmentInfo[];
