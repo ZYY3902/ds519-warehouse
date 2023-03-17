@@ -1,0 +1,4 @@
+Used Azure Cosmos DB to create the database for the warehouse
+Fields required to post shipment data include "id", "Date", "WarehouseID", 
+"ShippingPO", "ShipmentID", "BoxesRcvd" 
+Datatype for all fields: string
