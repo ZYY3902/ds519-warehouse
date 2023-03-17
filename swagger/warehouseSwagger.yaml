@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Warehouse Automation - OpenAPI 3.0
+  description: |-
+    Warehouse Automation
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: ziningye@bu.edu
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+  
+servers:
+  - url: https://warehouse-apps.azurewebsites.net/api
+tags:
+  - name: ShipmentInfo
+    description: Everything about adding shipments
+paths:
+  /AddShipment:
+    post:
+      tags:
+        - ShipmentInfo
+      summary: Add a new shipment data to the database
+      description: Add a new shipment data to the database
+      operationId: post-addShipment
+      requestBody:
+        description: Create a new shipment in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shipment'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            text/plain:
+              example:  Shipment added successfully
+        '401':
+          description: Unauthorized
+      security:
+        - code: []
+  /GetShipmentData:
+    get:
+      tags:
+        - ShipmentInfo
+      summary: Get shipment data from the database
+      description: Get shipment data from the database
+      operationId: get-GetShipmentData
+      parameters:
+        - name: id
+          in: query
+          description: Enter Shipper ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shipment'          
+        '401':
+          description: Unauthorized
+      security:
+        - code: []
+components:
+  schemas:
+    Shipment:
+      type: object
+      properties:
+              id:
+                type: string
+                example: SHIP1
+              Date:
+                type: string
+                example: Mar 9, 2022
+              WarehouseID: 
+                type: string
+                example: a908cef7-4c67-40f3-88f7-08a03ba4104e
+              ShippingPO: 
+                type: string
+                example: 81d06bd2-39e3-427c-9fb3-4e217b9a4d60
+              ShipmentID:
+                type: string
+                example: 1
+              BoxesRcvd:
+                type: string
+                example: 12
+  securitySchemes:
+    code:
+      type: apiKey
+      name: code
+      in: query

@@ -1,0 +1,10 @@
+az functionapp function keys set -g ds519-assignment4 -n warehouse-apps --function-name AddShipment --key-name default
+
+$newKey = az functionapp function keys set -g ds519-assignment4 -n warehouse-apps --function-name GetShipmentData --key-name default | Out-String | ConvertFrom-Json
+$newKey = $newKey.value
+
+# For Web App
+# az webapp config appsettings set --resource-group ds519-assignment4 --name warehousefrontend --settings REACT_APP_API_KEY=$newKey
+
+# For Static Web App
+az staticwebapp appsettings set -n warehousestatic --setting-names REACT_APP_API_KEY=$newKey

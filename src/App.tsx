@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import {Grid, TextField, Typography} from "@mui/material";
 import Button from '@mui/material/Button';
-import { API_URL } from "./globals";
+// import { API_URL } from "./globals";
 import { ReportTable } from "./ReportTable";
 import { ShipmentInfo } from "./api_types";
  
@@ -20,17 +20,15 @@ function App() {
           'Content-Type': 'application/json',
         })
       });
-      console.log(response.json())
       const data  = await response.json();
       setapiKey(data);
     }
     fetchKey();
-    console.log(apiKey)
   }, [])
 
   // String(process.env.REACT_APP_API_KEY)
   const fetchDataByID = async (shipperId:string) => {
-    const res = await fetch(API_URL + "&id=" + shipperId, {
+    const res = await fetch("/api/getKey/" + "&id=" + shipperId, {
       method: "GET",
       headers: ({
         'Content-Type': 'application/json',
